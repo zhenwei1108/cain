@@ -3,8 +3,9 @@ package com.github.wegoo.cain.engine.enums;
 import com.github.wegoo.cain.engine.base.BaseAlgorithmEnum;
 
 public enum KeyAlgorithmEnum implements BaseAlgorithmEnum {
-  SM2("SM2","asym"),
-  RSA("RSA","asym"),
+  SM2("SM2",AlgorithmTypeEnum.ASYMMETRY),
+  RSA("RSA",AlgorithmTypeEnum.SYMMETRY),
+  SM3("SM3",AlgorithmTypeEnum.HASH)
 
   ;
 
@@ -15,15 +16,24 @@ public enum KeyAlgorithmEnum implements BaseAlgorithmEnum {
    * hash = 摘要
    *
    */
-  String keyType;
+  AlgorithmTypeEnum algType;
 
-  KeyAlgorithmEnum(String algorithm, String keyType) {
+  static final KeyAlgorithmEnum[] VALUES = values();
+
+  KeyAlgorithmEnum(String algorithm, AlgorithmTypeEnum algType) {
     this.algorithm = algorithm;
-    this.keyType = keyType;
+    this.algType = algType;
   }
 
   @Override
   public String getAlgorithm() {
-    return null;
+    return algorithm;
+  }
+
+
+
+  @Override
+  public KeyAlgorithmEnum[] getValues() {
+    return VALUES;
   }
 }

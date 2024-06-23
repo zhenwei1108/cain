@@ -2,7 +2,9 @@ package com.github.wegoo.cain.test;
 
 
 import com.github.wegoo.cain.jce.provider.CainJCEProvider;
+import com.github.wegoo.cain.util.encoders.Base64;
 import com.github.wegoo.cain.util.encoders.Hex;
+import java.nio.ByteBuffer;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.Security;
@@ -29,6 +31,15 @@ public class KyberTest {
     byte[] bytes = cipher.wrap(secretKey);
     System.out.println(Hex.toHexString(bytes));
 
+  }
+
+  public static void main(String[] args) {
+    byte[] decode = Base64.decode("d0FqTg==");
+    System.out.println(decode.length);
+    ByteBuffer wrap = ByteBuffer.wrap(decode);
+    int anInt = wrap.getInt();
+    System.out.println(anInt);
+    System.out.println(new String(decode));
   }
 
 

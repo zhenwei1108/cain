@@ -19,4 +19,12 @@ public enum KeyParamsEnum implements BaseParams {
     this.keyAlg = keyAlg;
     this.keyLen = keyLen;
   }
+
+  public KeyAlgorithmEnum getKeyAlg() {
+    return keyAlg;
+  }
+
+  public int getKeyLen() {
+    return keyLen;
+  }
 }

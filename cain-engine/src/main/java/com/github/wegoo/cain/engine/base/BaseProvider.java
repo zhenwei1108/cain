@@ -1,6 +1,5 @@
 package com.github.wegoo.cain.engine.base;
 
-import com.github.wegoo.cain.engine.params.KeyParams;
 import com.github.wegoo.cain.engine.params.KeyParamsEnum;
 import java.security.KeyPair;
 

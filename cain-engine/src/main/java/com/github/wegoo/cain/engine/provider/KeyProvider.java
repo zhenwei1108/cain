@@ -3,10 +3,13 @@ package com.github.wegoo.cain.engine.provider;
 import com.github.wegoo.cain.engine.base.BaseProvider;
 import com.github.wegoo.cain.engine.params.KeyParamsEnum;
 import com.github.wegoo.cain.jce.provider.CainJCEProvider;
+import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.Security;
+import javax.crypto.KeyGenerator;
 
 public class KeyProvider implements BaseProvider {
 
@@ -29,4 +32,16 @@ public class KeyProvider implements BaseProvider {
       throw new RuntimeException(e);
     }
   }
+
+  @Override
+  public Key generateKey(KeyParamsEnum keyParams) {
+    try {
+      KeyGenerator generator = KeyGenerator.getInstance(keyParams.getKeyAlg().name(), provider);
+      generator.init(keyParams.getKeyLen());
+      return generator.generateKey();
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 }
